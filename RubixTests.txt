@@ -1,0 +1,7 @@
+Rubix Test:
+
+Input:
+B,F,U,L',R,F,R,F,F,U,U,L,L,U',R',B,R,R,F,F,U,U,R,L,D,D,U,B',R,R,D,D,L,L,F'
+
+Phase 1:
+R,B,B,R,U,U,L',U,F',U',L,R',F',R,F,R,R,D',R,D

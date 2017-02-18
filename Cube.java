@@ -8,7 +8,10 @@
 // Accessor Methods
 // Modifier Methods
 // Movement Methods
-// Perception Methods
+// Decoder Methods
+// - Trim Array Strings so no empty spaces
+// - Maybe separate by ' ' as well as ','
+// - Turn moves ending with 2 into double moves of the form U,U
 // Display Methods
 // Equality Methods
 
@@ -174,8 +177,20 @@ public class Cube{
 	//Decoder Method
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Returns int[] of number associated with moves or a null/negative one if the String is invalid
+	//rawMoveSet input is a string of the form "U,F,R,R,F',D" where the moves are the strings separated by the commas
 	private int[] moveDecoder(String rawMoveSet){
-		rawMoveSet = rawMoveSet.toUpperCase();
+		rawMoveSet = rawMoveSet.toUpperCase().trim();			//<-Takes input and formats it to Uppercase letters removes leading and ending spaces
+
+		// if(rawMoveSet.indexOf(',')==-1)						//<-If a user inputs a rawMoveSet separated by spaces and not commas, the spaces are replaced by
+		// 	rawMoveSet.replace('');								//commas and the regular code is run.  Still trying to figure out a way to combat multiple spaces
+
+		while(rawMoveSet.contains(" ")){						//<-Removes any unecessary Spacing, also if two moves are separated by only a space, it replaces
+			if(rawMoveSet.contains(", ")){						//these spaces with commas.  Allows for greater range of valid input
+				rawMoveSet = rawMoveSet.replaceFirst(", ",",");
+				continue;
+			}
+			rawMoveSet = rawMoveSet.replaceFirst(" ",",");
+		}
 		String[] moveArray = rawMoveSet.split(",");
 		int[] decdArray = new int[moveArray.length];
 		for(int i=0;i<moveArray.length;i++){
@@ -185,7 +200,7 @@ public class Cube{
 					break;
 				}
 				else if(j==11)
-					return null;					//Or decdArray[0] = -1
+					return null;								//If a move set is invalid, null is return and no moves are called
 			}
 		}
 		return decdArray;

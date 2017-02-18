@@ -15,21 +15,21 @@ public class rubix{
 		Scanner Scan = new Scanner(System.in);
 		Cube ruben = new Cube();
 		ruben.printFaces();
-		ruben.printFN();
 		String input = "";
 		String algorithim = "R,B,L,F";
-		int count = 0;
-		do{
-			ruben.moveSet(algorithim);
-			count++;
-		}while(!ruben.solvedCube());
-		System.out.println("Count: "+count);
-		ruben.printFaces();
+		String tempAlg = "";
 		while(!input.equals("exit")){
 			input = Scan.nextLine();
-			if(input.equals("check"))
-				System.out.println("Alg Time"+algCheck(ruben,algorithim));
-			System.out.println("MoveValidity:"+ruben.moveSet(input));
+			if(input.equals("algorithim")){
+				System.out.println("*NOTE* if you input a invalid algorithim, the last valid algorithim will be run\nInput Algorithim: ");
+				tempAlg = Scan.nextLine();
+				if(ruben.isValid(tempAlg)){
+					algorithim = tempAlg;
+				}
+				System.out.println("Alg Time "+algCheck(ruben,algorithim));
+			}
+			else
+				System.out.println("MoveValidity:"+ruben.moveSet(input));
 			ruben.printFaces();
 		}
 	}

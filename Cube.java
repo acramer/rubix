@@ -9,11 +9,11 @@
 // Modifier Methods
 // Movement Methods
 // Decoder Methods
-// - Trim Array Strings so no empty spaces
-// - Maybe separate by ' ' as well as ','
-// - Turn moves ending with 2 into double moves of the form U,U
+// -None
 // Display Methods
+// -printCube() - prints out faces in a correctly oriented and somewhat connected way
 // Equality Methods
+// -equals() - compares two this cube to another
 
 
 public class Cube{
@@ -170,6 +170,11 @@ public class Cube{
 		backFace.move();
 		leftFace.move();
 		bottemFace.move();
+	}
+	public boolean isValid(String alg){
+		if(moveDecoder(alg) == null)
+			return false;
+		return true;
 	}
 
 
@@ -362,9 +367,6 @@ public class Cube{
 		System.out.println("bottomFace\n");
 		bottemFace.printFace();
 	}
-	public void printFN(){
-		frontFace.printNeighbors();
-	}
 	// public void printCube(){
 	// 	//should orient them in a way that shows the coninuity of the cube
 	// }
@@ -376,6 +378,12 @@ public class Cube{
 	public boolean solvedCube(){
 		return (topFace.solvedFace()&&frontFace.solvedFace()&&rightFace.solvedFace()&&backFace.solvedFace()&&leftFace.solvedFace()&&bottemFace.solvedFace());
 	}
+	//Compares two cubes to each other
+	// public boolean equals(Cube x){
+	// 	//-Should call .equals() for each face pairing
+	//	//-may consider trying to match one face to each orientation of the the other cube's 6 and checking equality from that.  This may require the adding of
+	//	//other Face specific accessor methods and re-orientation methods
+	// }
 
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

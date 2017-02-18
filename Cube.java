@@ -191,6 +191,10 @@ public class Cube{
 			}
 			rawMoveSet = rawMoveSet.replaceFirst(" ",",");
 		}
+
+		rawMoveSet = rawMoveSet.replaceAll("2",",X");			//<-Allows for double moves to be called by replacing two with a character that will be replaced
+																//later on by the move before it;
+
 		String[] moveArray = rawMoveSet.split(",");
 		int[] decdArray = new int[moveArray.length];
 		for(int i=0;i<moveArray.length;i++){
@@ -199,8 +203,12 @@ public class Cube{
 					decdArray[i] = j;
 					break;
 				}
-				else if(j==11)
-					return null;								//If a move set is invalid, null is return and no moves are called
+				else if(j==11){									//<-Checks to see if move is X; if it is, the previous move is placed in this move,
+					if(moveArray[i].equals("X")&&i>0&&!moveArray[i-1].equals("X"))
+						decdArray[i] = decdArray[i-1];
+					else										//if it isn't, or if it is immediatly following another X, the moveset is returned invalid
+						return null;							//If a move set is invalid, null is return and no moves are called
+				}
 			}
 		}
 		return decdArray;

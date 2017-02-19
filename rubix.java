@@ -14,7 +14,11 @@ public class rubix{
 	public static void main(String[] args){
 		Scanner Scan = new Scanner(System.in);
 		Cube ruben = new Cube();
-		System.out.println("\nThis is a rubix cube simulator\nThe characters \"U\",\"F\",\"R\",\"B\",\"L\",\"D\", are mapped to clockwise rotation of the Top, Front, Right, Back, Left, and Bottem Faces respectively.\nMove sets can be input with moves separated either by commas (\",\") or spaces (\" \").\n\nTo test an algorithim type \"algorithim\", and to exit the simulator type \"exit\".\n");
+		System.out.println("\nThis is a rubix cube simulator"+
+							"\n\nThe characters \"U\",\"F\",\"R\",\"B\",\"L\",\"D\", are mapped to clockwise rotation of the Top, Front, "+
+							"Right, Back, Left, and Bottem Faces respectively."+
+							"\nMove sets can be input with moves separated either by commas (\",\") or spaces (\" \")."+
+							"\n\nTo test an algorithim type \"algorithim\", and to exit the simulator type \"exit\".\n");
 		ruben.printFaces();
 		String input = "";
 		String algorithim = "R,B,L,F";
